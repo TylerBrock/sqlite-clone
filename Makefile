@@ -4,7 +4,7 @@ SRC_DIR=src
 BUILD_DIR=build
 OBJ_DIR=obj
 
-_DEPS=btree.h constants.h cursor.h pager.h row.h table.h
+_DEPS=main.h btree.h constants.h cursor.h pager.h row.h table.h
 DEPS=$(patsubst %, $(SRC_DIR)/%,$(_DEPS))
 
 _OBJ=main.o btree.o constants.o cursor.o pager.o row.o table.o
