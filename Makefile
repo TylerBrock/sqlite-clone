@@ -1,17 +1,26 @@
 CC=clang
-CFLAGS=-I.
-DEPS=btree.h constants.h cursor.h pager.h row.h table.h
+CFLAGS=-I./$(SRC_DIR)
+SRC_DIR=src
+BUILD_DIR=build
+OBJ_DIR=obj
 
-%.o: %.c $(DEPS)
+_DEPS=btree.h constants.h cursor.h pager.h row.h table.h
+DEPS=$(patsubst %, $(SRC_DIR)/%,$(_DEPS))
+
+_OBJ=main.o btree.o constants.o cursor.o pager.o row.o table.o
+OBJ=$(patsubst %, $(BUILD_DIR)/$(OBJ_DIR)/%,$(_OBJ))
+
+$(BUILD_DIR)/$(OBJ_DIR)/%.o: src/%.c $(DEPS)
+	@ mkdir -p $(BUILD_DIR)/$(OBJ_DIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-sqlite: main.o btree.o constants.o cursor.o pager.o row.o table.o
-	$(CC) -o sqlite main.o btree.o constants.o cursor.o pager.o row.o table.o
+$(BUILD_DIR)/sqlite: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
 
-test: sqlite
+test: $(BUILD_DIR)/sqlite
 	rspec .
 
-.PHONY: clean
-
 clean:
-		rm -f *.o
+		rm -fr $(BUILD_DIR)
+
+.PHONY: clean
