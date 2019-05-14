@@ -51,3 +51,5 @@ void initialize_leaf_node(void* node);
 void leaf_node_insert(Cursor* cursor, uint32_t key, Row* value);
 
 void print_leaf_node(void* node);
+
+void print_constants();

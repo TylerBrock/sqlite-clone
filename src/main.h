@@ -1,5 +1,9 @@
 #pragma once
 
+#include <sys/types.h>
+
+#include "row.h"
+
 enum MetaCommandResult_t {
   META_COMMAND_SUCCESS,
   META_COMMAND_UNRECOGNIZED_COMMAND
