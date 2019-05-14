@@ -7,9 +7,9 @@
 #include "btree.h"
 #include "constants.h"
 #include "cursor.h"
-#include "row.h"
-#include "pager.h"
 #include "main.h"
+#include "pager.h"
+#include "row.h"
 
 InputBuffer* new_input_buffer() {
   InputBuffer* input_buffer = malloc(sizeof(InputBuffer));
