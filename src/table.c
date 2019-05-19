@@ -12,6 +12,7 @@ Table* db_open(const char* filename) {
   table->pager = pager;
   table->root_page_num = 0;
 
+  // TODO (TJB): why don't we do this in pager_open()?
   if (pager->num_pages == 0) {
       // New database file. Initialize page 0 as leaf node.
       void* root_node = get_page(pager, 0);
